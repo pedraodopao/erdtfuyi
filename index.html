@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>meu primeiro canvas</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+   
+
+</head>
+<body> 
+    
+    <center>
+    <h1> Meu primeiro Canvas </h1>
+    <canvas id="canvas" width="650px" height="600px"></canvas>
+    <br>
+    <button id="botaoLimpar" onclick="limpar()"> Limpar 🧹 </button>
+   
+</center>
+
+    <script>
+        
+        canvas = document.getElementById("canvas");
+        ctx = canvas.getContext("2d");
+
+        var larguraTela = screen.width - 70;
+        var alturaTela = screen.height - 300;
+
+        if(larguraTela < 992){
+            canvas.width = larguraTela;
+            canvas.height = alturaTela;
+            document.body.style.overflow = 'hidden';
+        }
+
+        // fim do mesmo código utilizado para a versão web
+        function limpar(){
+            ctx.clearRect(0,0,canvas.width, canvas.height)
+        }
+        canvas.addEventListener("touchstart",dedoTocou);
+        function dedoTocou(e){
+            ultimoX = e.touches[0].clientX - canvas.offsetLeft;
+            ultimoY = e.touches[0].clientY - canvas.offsetTop;
+        }
+        canvas.addEventListener("touchmove",dedomove);
+        function dedomove(e){
+            atualX = e.touches[0].clientX - canvas.offsetLeft;
+            atualY = e.touches[0].clientY - canvas.offsetTop;
+        ctx.beginPath();
+        ctx.moveTo(ultimoX, ultimoY);
+        ctx.lineTo(atualX, atualY);
+        ctx.stroke();
+
+       ultimoX = atualX
+       ultimoY = atualY 
+
+     }
+      
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
